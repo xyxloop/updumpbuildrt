@@ -1,0 +1,18 @@
+name: aliupdtest
+
+on: workflow_dispatch
+
+jobs:
+  build:
+
+    runs-on: windows-2019
+
+    steps:
+    - name: Upload to AliyunDrive
+      run: |
+        Invoke-WebRequest https://github.com/tickstep/aliyunpan/releases/download/v0.1.2/aliyunpan-v0.1.2-windows-x64.zip --OutFile aliyunpan.zip 
+        Expand-Archive aliyunpan.zip
+        cd aliyunpan-v0.1.2-windows-x64\aliyunpan-v0.1.2-windows-x64
+        New-Item .\ok.txt -type file
+        Set-Content .\ok.txt test
+        .\aliyunpan.exe login -RefreshToken=${{ secrets.RTOKEN }} && aliyunpan upload C:\uupwork\2*\*.iso /Windows
