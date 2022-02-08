@@ -10,6 +10,7 @@ jobs:
     steps:
     - name: Download
       run: |
+        C:
         mkdir work
         cd work
         Invoke-WebRequest https://raw.githubusercontent.com/JosephM101/uupdump_cli/main/uupdump_cli.py -OutFile uupdump_cli.py
@@ -22,4 +23,4 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: uupfiles
-        path: work/
+        path: C:\work
