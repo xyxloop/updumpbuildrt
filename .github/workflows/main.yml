@@ -24,6 +24,7 @@ jobs:
       with:
         name: uupiso
         path: C:\uupwork\2*\*.iso
+        if-no-files-found: error
     - name: Upload to AliyunDrive
       run: |
         Invoke-WebRequest https://github.com/tickstep/aliyunpan/releases/download/v0.1.2/aliyunpan-v0.1.2-windows-x64.zip -OutFile aliyunpan.zip 
