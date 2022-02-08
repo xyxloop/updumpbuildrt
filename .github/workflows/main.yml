@@ -41,9 +41,9 @@ jobs:
         Copy-Item C:\uupwork\2*\*.iso .\ISO
         dir
         .\aliyunpan.exe login -RefreshToken=${{ secrets.RTOKEN }} && .\aliyunpan.exe upload .\ISO /Windows
-           - name: Create file status_job1.txt and write the job status into it
-        if: always()
-        run: echo ${{ job.status }} > status_job1.txt
+    - name: Create file status_job1.txt and write the job status into it
+      if: always()
+      run: echo ${{ job.status }} > status_job1.txt
     - name: Upload file status_job1.txt as an artifact
       if: always()
       uses: actions/upload-artifact@v1
