@@ -17,7 +17,7 @@ jobs:
         pip3 install py7zr requests
         python3 uupdump_cli.py Dev arm64 PROFESSIONAL
         dir
-        cd 22*
+        cd 2*
         .\uup_download_windows.cmd
     - name: Upload
       uses: actions/upload-artifact@master
