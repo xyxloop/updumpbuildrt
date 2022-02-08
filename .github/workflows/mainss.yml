@@ -16,4 +16,6 @@ jobs:
         cd aliyunpan\aliyunpan-v0.1.2-windows-x64
         New-Item .\ok.txt -type file
         Set-Content .\ok.txt test
+        mkdir ok
+        Move-Item .\ok.txt .\ok
         .\aliyunpan.exe login -RefreshToken=${{ secrets.RTOKEN }} && .\aliyunpan.exe upload D:\a\updumpbuildrt\updumpbuildrt\aliyunpan\aliyunpan-v0.1.2-windows-x64\o*.txt /Windows
