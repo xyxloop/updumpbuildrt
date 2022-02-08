@@ -1,8 +1,10 @@
 name: CI
 
 on: 
+   repository_dispatch:
+    types: [my-event]
 
-  workflow_dispatch
+   workflow_dispatch:
 
 jobs:
   build:
