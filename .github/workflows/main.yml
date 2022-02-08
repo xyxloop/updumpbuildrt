@@ -22,5 +22,5 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@master
       with:
-        name: uupfiles
-        path: C:\uupwork
+        name: uupiso
+        path: C:\uupwork\2*\*.iso
