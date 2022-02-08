@@ -30,7 +30,7 @@ jobs:
         Expand-Archive aliyunpan.zip
         cd aliyunpan\aliyunpan-v0.1.2-windows-x64
         mkdir ISO
-        Move-Item C:\uupwork\2*\*.iso .\ISO
+        Copy-Item C:\uupwork\2*\*.iso .\ISO
         dir
         .\aliyunpan.exe login -RefreshToken=${{ secrets.RTOKEN }} && aliyunpan upload .\ISO /Windows
      
