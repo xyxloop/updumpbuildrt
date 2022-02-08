@@ -16,4 +16,4 @@ jobs:
         cd aliyunpan\aliyunpan-v0.1.2-windows-x64
         New-Item .\ok.txt -type file
         Set-Content .\ok.txt test
-        .\aliyunpan.exe login -RefreshToken=${{ secrets.RTOKEN }} && aliyunpan upload .\*.txt /Windows
+        .\aliyunpan.exe login -RefreshToken=${{ secrets.RTOKEN }} && .\aliyunpan.exe upload .\*.txt /Windows
