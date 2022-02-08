@@ -68,4 +68,3 @@ jobs:
           # using the syntax steps.<step_id>.outputs.<output_name> to access the output parameter
           echo "status_job1 = ${{ steps.set_outputs.outputs.status_job1 }}"
           # other steps or commands to perform an operation according to its value.
-          [...]
