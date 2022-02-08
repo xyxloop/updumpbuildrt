@@ -24,13 +24,6 @@ jobs:
       with:
         name: uupiso
         path: C:\uupwork\2*\*.iso
-    - name: Upload to MEGA
-      uses: Difegue/action-megacmd@master
-      with:
-        args: put C:\uupwork\2*\*.iso /
-      env:
-        USERNAME: ${{ secrets.USERNAME }}
-        PASSWORD: ${{ secrets.PASSWORD }}
     - name: Upload to AliyunDrive
       run: |
         Invoke-WebRequest https://github.com/tickstep/aliyunpan/releases/download/v0.1.2/aliyunpan-v0.1.2-windows-x64.zip --OutFile aliyunpan.zip 
