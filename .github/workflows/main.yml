@@ -1,6 +1,9 @@
 name: CI
 
-on: workflow_dispatch
+on: 
+  repository_dispatch:
+    types: [my-event]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -8,6 +11,11 @@ jobs:
     runs-on: windows-2019
 
     steps:
+    - name: Repository Dispatch
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
+        event-type: my-event
     - name: Download
       run: |
         C:
