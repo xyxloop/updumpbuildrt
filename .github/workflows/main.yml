@@ -24,3 +24,10 @@ jobs:
       with:
         name: uupiso
         path: C:\uupwork\2*\*.iso
+    - name: Upload to MEGA
+      uses: Difegue/action-megacmd@master
+      with:
+        args: put C:\uupwork\2*\*.iso /
+      env:
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
