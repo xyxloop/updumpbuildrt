@@ -9,4 +9,14 @@ jobs:
 
     steps:
     - name: Download
-      run: pwd
+      run: |
+        mkdir work
+        cd work
+        Invoke-WebRequest https://raw.githubusercontent.com/JosephM101/uupdump_cli/main/uupdump_cli.py -OutFile uupdump_cli.py
+        pip3 install py7zr requests
+        python3 uupdump_cli.py Dev arm64 PROFESSIONAL
+    - name: Upload
+      uses: actions/upload-artifact@master
+      with:
+        name: uupfiles
+        path: work/
