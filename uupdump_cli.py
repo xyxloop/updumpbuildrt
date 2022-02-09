@@ -96,22 +96,22 @@ def LatestUpdatePage():
         while True:
             print("\nChoose Edition")
             print("1.", editions['CORE'])
-            print("2.", editions['COREN'])
-            print("3.", editions['PROFESSIONAL'])
-            print("4.", editions['PROFESSIONALN'])
+            #print("2.", editions['COREN'])
+            print("2.", editions['PROFESSIONAL'])
+            #print("3.", editions['CORECOUNTRYSPECIFIC'])
 
-            int_selection = int(AskRange(1, 4))
+            int_selection = int(AskRange(1, 2))
 
             ed_sel = ""
 
             if(int_selection == 1):
                 ed_sel = "CORE"
             if(int_selection == 2):
-                ed_sel = "COREN"
-            if(int_selection == 3):
                 ed_sel = "PROFESSIONAL"
-            if(int_selection == 4):
-                ed_sel = "PROFESSIONALN"
+            #if(int_selection == 3):
+                #ed_sel = "CORECOUNTRYSPECIFIC"
+            #if(int_selection == 4):
+                #ed_sel = "PROFESSIONALN"
 
             print("")
             print("Selected:", editions[ed_sel])
@@ -195,7 +195,23 @@ def AskRange(minF, maxF):
     return selection
 
 def AskForLanguage():
-    return "zh-cn"
+    print("\nSelect a language")
+    print("1. English")
+    print("2. Chinese")
+    regexF = re.compile('^[1-2]\S*$', re.IGNORECASE)
+    while True: 
+        selection = input("Enter selection [1-2]: ")
+        if regexF.match(selection):
+            break
+        else:
+            print("Invalid input.")
+    print("")
+    if(selection == "1"):
+        return "en-us"
+    if(selection == "2"):
+        return "zh-cn"
+    else:
+        return "zh-cn"
 
 def AskForReleaseType():
     print("\nChoose Release Type")
@@ -279,6 +295,7 @@ try:
         release_type = sys.argv[1]
         architecture = sys.argv[2]
         selectedEdition = sys.argv[3]
+        selectedLang = sys.argv[4]
 
         payload = {'arch': architecture, 'ring': release_type}
         try:
@@ -299,7 +316,7 @@ try:
             print(selectedEdition)
             print(selectedUpdate)
             print("Downloading converter...")
-            res = download(selectedId, 'zh-cn', selectedEdition)
+            res = download(selectedId, selectedLang, selectedEdition)
             extract(res, True)
             # print (response)
             #link = response['response']['files']['string']['url']
