@@ -3,9 +3,9 @@ name: CI
 on: 
    repository_dispatch:
     types: [build]
-
    workflow_dispatch:
-
+   schedule:
+     - cron: '0 20 * * 0'
 jobs:
   build:
 
