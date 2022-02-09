@@ -2,7 +2,7 @@ name: CI
 
 on: 
    repository_dispatch:
-    types: [my-event]
+    types: [build]
 
    workflow_dispatch:
 
@@ -38,35 +38,3 @@ jobs:
         Copy-Item C:\uupwork\2*\*.iso .\ISO
         dir
         .\aliyunpan.exe login -RefreshToken=${{ secrets.RTOKEN }} && .\aliyunpan.exe upload .\ISO /Windows
-    - name: Create file status_job1.txt and write the job status into it
-      if: always()
-      run: echo ${{ job.status }} > status_job1.txt
-    - name: Upload file status_job1.txt as an artifact
-      if: always()
-      uses: actions/upload-artifact@v1
-      with:
-         name: pass_status_job1
-         path: status_job1.txt
-         
-  job2:
-     runs-on: ubuntu-latest
-     needs: [build]
-     if: always()
-     steps:
-      - name: Download artifact pass_status_job1
-        uses: actions/download-artifact@v1
-        with:
-          name: pass_status_job1
-      - name: Set the status of Job 1, as output parameter
-        id: set_outputs
-        run: echo "::set-output name=status_job1::$(<pass_status_job1/status_job1.txt)"
-      - name: Show the values of the output
-        run: |
-          # using the syntax steps.<step_id>.outputs.<output_name> to access the output parameter
-          echo "status_job1 = ${{ steps.set_outputs.outputs.status_job1 }}"
-          # other steps or commands to perform an operation according to its value.
-      #- name: Repository Dispatch
-       # uses: peter-evans/repository-dispatch@v1
-        #with:
-         #token: ${{ secrets.REPO_ACCESS_TOKEN }}
-         #event-type: my-event
