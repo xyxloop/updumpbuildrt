@@ -296,11 +296,11 @@ try:
         architecture = sys.argv[2]
         selectedEdition = sys.argv[3]
         selectedLang = sys.argv[4]
-
+        selectedId = sys.argv[5]
+        
         payload = {'arch': architecture, 'ring': release_type}
         try:
             length = 0
-            selectedId = ""
             latest_update_request = requests.get(API_URL+"/fetchupd.php", params=payload)
             response = latest_update_request.json()
             updates = response['response']['updateArray']
@@ -310,7 +310,6 @@ try:
                 length += 1
                 print (str(length) + ": " + f['updateTitle'], "("+f['foundBuild']+")")
             selectedUpdate = updates[0]
-            selectedId = selectedUpdate['updateId']
             print("")
             print(selectedId)
             print(selectedEdition)
