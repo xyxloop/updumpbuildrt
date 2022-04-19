@@ -37,4 +37,4 @@ jobs:
         mkdir ISO
         Copy-Item C:\uupwork\2*\*.iso .\ISO
         dir
-        .\aliyunpan.exe login -RefreshToken=${{ secrets.RTOKEN }} && .\aliyunpan.exe upload .\ISO /Windows
+        .\aliyunpan.exe login -RefreshToken=${{ secrets.RTOKEN }} && .\aliyunpan.exe upload .\ISO /share/Windows
