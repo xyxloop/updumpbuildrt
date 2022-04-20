@@ -22,13 +22,13 @@ jobs:
         pip3 install py7zr requests
         python3 uupdump_cli.py Dev arm64 PROFESSIONAL zh-cn 2e47bed2-1c9b-45ec-aed1-f99d51ece1f3
         dir
-        cd 2*
+        cd 1*
         .\uup_download_windows.cmd
     - name: Upload
       uses: actions/upload-artifact@master
       with:
         name: uupiso
-        path: C:\uupwork\2*\*.iso
+        path: C:\uupwork\1*\*.iso
         if-no-files-found: error
     - name: Upload to AliyunDrive
       run: |
@@ -36,6 +36,6 @@ jobs:
         Expand-Archive aliyunpan.zip
         cd aliyunpan\aliyunpan-v0.1.3-windows-x64
         mkdir ISO
-        Copy-Item C:\uupwork\2*\*.iso .\ISO
+        Copy-Item C:\uupwork\1*\*.iso .\ISO
         dir
         .\aliyunpan.exe login -RefreshToken=${{ secrets.RTOKEN }} && .\aliyunpan.exe upload .\ISO /share/Windows
