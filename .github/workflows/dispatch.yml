@@ -1,7 +1,7 @@
 name: Check build status
 on:
   workflow_run:
-    workflows: [Windows 11 ARM Dev]
+    workflows: [CI]
     types: [completed]
 
 jobs:
