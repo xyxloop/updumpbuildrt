@@ -1,8 +1,8 @@
-name: Windows 11 Dev
+name: CI2
 
 on: 
    repository_dispatch:
-    types: [build]
+    types: [build1]
    workflow_dispatch:
    #schedule:
      #- cron: '0 18 * * 6'
