@@ -1,4 +1,4 @@
-name: Windows 11 ARM Dev
+name: CI
 
 on: 
    repository_dispatch:
