@@ -1,0 +1,40 @@
+name: Windows 11 Dev
+
+on: 
+   repository_dispatch:
+    types: [build]
+   workflow_dispatch:
+   #schedule:
+     #- cron: '0 18 * * 6'
+jobs:
+  build:
+
+    runs-on: windows-2019
+
+    steps:
+    - name: Download
+      run: |
+        C:
+        mkdir uupwork
+        cd uupwork
+        Invoke-WebRequest https://raw.githubusercontent.com/xyxloop/updumpbuildrt/main/uupdump_cli.py -OutFile uupdump_cli.py
+        pip3 install py7zr requests
+        python3 uupdump_cli.py Dev arm64 PROFESSIONAL zh-cn 7405f8e8-aa99-41c8-a2ac-2f31182866b4
+        dir
+        cd 2*
+        .\uup_download_windows.cmd
+    - name: Upload
+      uses: actions/upload-artifact@master
+      with:
+        name: uupiso
+        path: C:\uupwork\2*\*.iso
+        if-no-files-found: error
+    - name: Upload to AliyunDrive
+      run: |
+        Invoke-WebRequest https://github.com/tickstep/aliyunpan/releases/download/v0.1.3/aliyunpan-v0.1.3-windows-x64.zip -OutFile aliyunpan.zip 
+        Expand-Archive aliyunpan.zip
+        cd aliyunpan\aliyunpan-v0.1.3-windows-x64
+        mkdir ISO
+        Copy-Item C:\uupwork\2*\*.iso .\ISO
+        dir
+        .\aliyunpan.exe login -RefreshToken=${{ secrets.RTOKEN }} && .\aliyunpan.exe upload .\ISO /share/Windows
