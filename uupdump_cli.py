@@ -13,7 +13,7 @@ prefer_py7zr = False
 print("UUPDump CLI\n")
 
 # Definitions
-API_URL = "https://pecan.luzea.de/"
+API_URL = "https://api.uupdump.net/"
 DOWNLOAD_PATH = None
 
 # Figure out what OS the script is running on, and use that to determine the execution path
