@@ -20,7 +20,7 @@ jobs:
         cd uupwork
         Invoke-WebRequest https://raw.githubusercontent.com/xyxloop/updumpbuildrt/main/uupdump_cli.py -OutFile uupdump_cli.py
         pip3 install py7zr requests
-        python3 uupdump_cli.py Dev arm64 PROFESSIONAL zh-cn 64ac9a47-ea11-4a66-9512-b57cb61d8a1c
+        python3 uupdump_cli.py Dev arm64 PROFESSIONAL zh-cn 37a818af-ff6b-4cb4-98e7-4fcc0f02aac7
         dir
         cd 2*
         .\uup_download_windows.cmd
